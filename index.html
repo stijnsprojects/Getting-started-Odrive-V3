@@ -44,6 +44,8 @@
                 <p> To make sure the odrivetool recognizes your board: </p>
                 <pre><code>sudo apt install curl</code></pre>
                 <pre><code>sudo bash -c "curl https://cdn.odriverobotics.com/files/odrive-udev-rules.rules > /etc/udev/rules.d/91-odrive.rules && udevadm control --reload-rules && udevadm trigger"</code></pre>
+                <p> Reboot the system </p>
+                <pre><code>sudo reboot</code></pre>
                 <p> You can start the odrivetool using the terminal: </p>
                 <pre><code>odrivetool</code></pre>
                 <p> Congratulations, you've successfully installed the odrivetool. </p>
