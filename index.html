@@ -10,8 +10,8 @@
 
     <body style="margin-left: 25px;">
         <h1> Getting started with ODrive V3 </h1>
-        <h2> Odrivetool installation </h2>
-        <p> You can install the odrivetool in a few ways, in the following sections two methods are explained: Windows standalone Python and Ubuntu</p>
+        <h2> odrivetool installation </h2>
+        <p> You can install the odrivetool in a few ways, in the following sections two methods are explained: Windows standalone Python and Ubuntu.</p>
         <details>
             <summary> Windows </summary>
             <div>
@@ -20,9 +20,9 @@
                 <img src="pythoninstaller.png" alt="not found" style="border: solid black 1px;">
                 <p> Once the installation is complete, you can open the command prompt (cmd) and enter the following command: </p>
                 <pre><code>pip install --upgrade odrive</code></pre>
-                <p> To start the odrivetool, you enter the following command in the command prompt (cmd) </p>
+                <p> To start the odrivetool, you enter the following command in the command prompt (cmd): </p>
                 <pre><code>odrivetool</code></pre>
-                <p> If you get the message "Could not open USB device: -5", you have to install Zadig tool and change the Native Interface to WinUSB </p>
+                <p> If you get the message "Could not open USB device: -5", you have to install <a href="https://zadig.akeo.ie/" target="_blank" rel="noopener noreferrer">Zadig</a> tool and change the Native Interface to WinUSB: </p>
                 <img src="zadig.png" alt="Not found" style="border: solid black 1px;">
                 <p> Congratulations, you've successfully installed the odrivetool. </p>
             </div>
@@ -36,7 +36,7 @@
                 <p> Once that is installed, you can start to install the ODrive software by pasting these command into the terminal (opened with <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>t</kbd>).</p>
                 <p> (If there are y/n questions during the installation, answer y) </p>
                 <p> Install Python: </p>
-                <pre><code>sudo apt install python3</code></pre>
+                <pre><code>sudo apt install python</code></pre>
                 <p> Install pip: </p>
                 <pre><code>sudo apt install pip</code></pre>
                 <p> Install ODrive: </p>
@@ -44,7 +44,7 @@
                 <p> To make sure the odrivetool recognizes your board: </p>
                 <pre><code>sudo apt install curl</code></pre>
                 <pre><code>sudo bash -c "curl https://cdn.odriverobotics.com/files/odrive-udev-rules.rules > /etc/udev/rules.d/91-odrive.rules && udevadm control --reload-rules && udevadm trigger"</code></pre>
-                <p> Reboot the system </p>
+                <p> Reboot the system: </p>
                 <pre><code>sudo reboot</code></pre>
                 <p> You can start the odrivetool using the terminal: </p>
                 <pre><code>odrivetool</code></pre>
@@ -56,7 +56,7 @@
         <div>
             <p> ODrive has a lot of settings, but there are a few that are necessary to get it working (and not break anything), these will be discussed in this section. </p>
             <p> When the board is connected, it shows the id, the id is odrv0 if there's only one board, with axis0 and axis1 you select the axis.</p>
-            <p> When entering or looking for commands, you can use the <kbd>tab</kbd> button to see all available options, use the arrow keys to navigate, for example </p>
+            <p> When entering or looking for commands, you can use the <kbd>tab</kbd> button to see all available options, use the arrow keys to navigate, for example: </p>
             <img src="taboptions.png" alt="not found">
             <p> If something goes wrong, for example the motor is not in closed loop anymore, you can check errors using: </p>
             <pre><code>dump_errors(odrv0)</code></pre>
@@ -64,55 +64,55 @@
         <h3> Settings </h3>
         <div>
             <p> Set your encoder counts per revolution (CPR = 4PPR): </p>
-            <pre><code>odrv0.axis0.encoder.config.cpr =</code></pre>
+            <pre><code>odrv0.axis0.encoder.config.cpr = </code></pre>
             <p> Set the current limit: </p>
-            <pre><code>odrv0.axis0.motor.config.current_lim =</code></pre>
+            <pre><code>odrv0.axis0.motor.config.current_lim = </code></pre>
             <p> Set the velocity limit: </p>
-            <pre><code>odrv0.axis0.controller.config.vel_limit =</code></pre>
+            <pre><code>odrv0.axis0.controller.config.vel_limit = </code></pre>
             <p> Set the number of pole pairs (# pole pairs = # magnets / 2): </p>
-            <pre><code>odrv0.axis0.motor.config.pole_pairs =</code></pre>
+            <pre><code>odrv0.axis0.motor.config.pole_pairs = </code></pre>
             <p> If you are using a brake resistor, set the variable to true: </p>
             <pre><code>odrv0.config.enable_brake_resistor = True</code></pre>
-            <p> To get everything working, you can try the calibrations first and when they work separately, you can enable them on startup: </p>
-            <p> First try the full calibration, if that doesn't work, you can try them each separately. </p>
+            <p> To get everything working, you can try the calibrations first and when they work, you can enable them on startup: </p>
+            <p> First try the full calibration, if that doesn't work, you can try them each separately: </p>
             <pre><code>odrv0.axis0.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE</code></pre>
-            <p> Motor calibration (this measures phase resistance and inductance) </p>
+            <p> Motor calibration (this measures phase resistance and inductance): </p>
             <pre><code>odrv0.axis0.requested_state = AXIS_STATE_MOTOR_CALIBRATION</code></pre>
-            <p> Encoder offset calibration (this measures the offset between the electrical and encoder position) </p>
+            <p> Encoder offset calibration (this measures the offset between the electrical and encoder position): </p>
             <pre><code>odrv0.axis0.requested_state = AXIS_STATE_ENCODER_OFFSET_CALIBRATION</code></pre>
-            <p> If you want to use an index pin </p>
+            <p> If you want to use an index pin: </p>
             <pre><code>odrv0.axis0.requested_state = AXIS_STATE_ENCODER_INDEX_SEARCH</code></pre>
-            <p> Now you can enter closed loop control, when you turn the motor, it should return to the original position. </p>
+            <p> Now you can enter closed loop control, when you turn the motor, it should return to the original position: </p>
             <pre><code>odrv0.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL</code></pre>
-            <p> Now that all this is working, you can save the motor calibration and encoder offset (if you have an index pin or absolute encoder) so it doesn't do it every time, but it's not a necessity </p>
+            <p> Now that all this is working, you can save the motor calibration and encoder offset (if you have an index pin or absolute encoder) so it doesn't do it every time, but it's not a necessity: </p>
             <pre><code>odrv0.axis0.motor.config.pre_calibrated = True</code></pre>
             <pre><code>odrv0.axis0.encoder.config.pre_calibrated = True</code></pre>
             <p> You can enable these commands to run at startup. </p>
-            <p> If your motor calibration is not saved, you can enable it on startup </p>
+            <p> If your motor calibration is not saved, you can enable it on startup: </p>
             <pre><code>odrv0.axis0.config.startup_motor_calibration = True</code></pre>
-            <p> The same is true for the encoder offset. </p>
+            <p> The same is true for the encoder offset: </p>
             <pre><code>odrv0.axis0.config.startup_encoder_offset_calibration = True</code></pre>
-            <p> If you are using an index, you can also enable the search on startup. </p>
+            <p> If you are using an index, you can also enable the search on startup: </p>
             <pre><code>odrv0.axis0.config.startup_encoder_index_search = True</code></pre>
-            <p> Now you can enable closed loop on startup. </p>
+            <p> Now you can enable closed loop on startup: </p>
             <pre><code>odrv0.axis0.config.startup_closed_loop_control = True</code></pre>
-            <p> Save your configuration and reboot the ODrive, the board should run the enabled startup functions</p>
+            <p> Save your configuration and reboot the ODrive, the board should run the enabled startup functions: </p>
             <pre><code>odrv0.save_configuration()</code></pre>
             <pre><code>odrv0.reboot()</code></pre>
             <p> Now the basics are set up, you can start using the board, there are a few control modes: velocity, torque, position. </p>
-            <p> To enter velocity control </p>
+            <p> To enter velocity control: </p>
             <pre><code>odrv0.axis0.controller.config.control_mode = CONTROL_MODE_VELOCITY_CONTROL</code></pre>
-            <p> To set the desired speed </p>
+            <p> To set the desired speed: </p>
             <pre><code>odrv0.axis0.controller.input_vel = </code></pre>
-            <p> To enter torque control </p>
+            <p> To enter torque control: </p>
             <pre><code>odrv0.axis0.controller.config.control_mode = CONTROL_MODE_TORQUE_CONTROL</code></pre>
-            <p> To set the desired torque (torque is determined by current, you can set the torque constant using odrv0.axis0.motor.config.torque_constant) </p>
+            <p> To set the desired torque (you can set the torque constant using odrv0.axis0.motor.config.torque_constant): </p>
             <pre><code>odrv0.axis0.controller.input_torque = </code></pre>
-            <p> To enter position control </p>
+            <p> To enter position control: </p>
             <pre><code>odrv0.axis0.controller.config.control_mode = CONTROL_MODE_POSITION_CONTROL</code></pre>
-            <p> To set the desired position </p>
+            <p> To set the desired position: </p>
             <pre><code>odrv0.axis0.controller.input_pos = </code></pre>
-            <p> There are a lot more settings, you can find them using the <kbd>tab</kbd> button as mentioned before, and you can take a look in the <a href="https://docs.odriverobotics.com/v/0.5.4/getting-started.html" target="_blank" rel="noopener noreferrer">ODrive docs</a></p>    
+            <p> There are a lot more settings, you can find them using the <kbd>tab</kbd> button as mentioned before, and you can take a look in the <a href="https://docs.odriverobotics.com/v/0.5.4/getting-started.html" target="_blank" rel="noopener noreferrer">ODrive docs</a>.</p>    
         </div>
     </body>
 </html>
