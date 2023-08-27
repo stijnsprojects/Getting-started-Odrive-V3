@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta name="google-site-verification" content="lFm5jOPvJV0CgWJwo2wZQu4RC_RhnDHLpehvc-tfCY8" />
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
@@ -10,7 +11,7 @@
 
     <body style="margin-left: 25px;">
         <h1> Getting started with ODrive V3 </h1>
-        <h2> Instuctional Video </h2>
+        <h2> Instructional Video </h2>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/L7MI0fGaOkQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h2> Odrivetool installation </h2>
         <p> You can install the odrivetool in a few ways, in the following sections two methods are explained: Windows standalone Python and Ubuntu.</p>
@@ -35,7 +36,7 @@
             <div>
                 <p> First of all, you need to install <a href="https://ubuntu.com/download/desktop" target="_blank" rel="noopener noreferrer">Ubuntu</a>, you can use <a href="https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html" target="_blank" rel="noopener noreferrer">VMware</a> to install it as a virtual machine. </p>
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/Q0Na0f1NtpA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <p> Once that is installed, you can start to install the ODrive software by pasting these command into the terminal (opened with <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>t</kbd>).</p>
+                <p> Once that is installed, you can start to install the ODrive software by pasting these commands into the terminal (opened with <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>t</kbd>).</p>
                 <p> (If there are y/n questions during the installation, answer y) </p>
                 <p> Install Python: </p>
                 <pre><code>sudo apt install python</code></pre>
@@ -60,7 +61,7 @@
             <p> When the board is connected, it shows the id, the id is odrv0 if there's only one board, with axis0 and axis1 you select the axis.</p>
             <p> When entering or looking for commands, you can use the <kbd>tab</kbd> button to see all available options, use the arrow keys to navigate, for example: </p>
             <img src="taboptions.png" alt="not found">
-            <p> If something goes wrong, for example the motor is not in closed loop anymore, you can check errors using: </p>
+            <p> If something goes wrong, for example, the motor is not in closed loop anymore, you can check errors using: </p>
             <pre><code>dump_errors(odrv0)</code></pre>
         </div>
         <h3> Settings </h3>
@@ -101,7 +102,7 @@
             <p> Save your configuration and reboot the ODrive, the board should run the enabled startup functions: </p>
             <pre><code>odrv0.save_configuration()</code></pre>
             <pre><code>odrv0.reboot()</code></pre>
-            <p> Now the basics are set up, you can start using the board, there are a few control modes: velocity, torque, position. </p>
+            <p> Now the basics are set up, you can start using the board, there are a few control modes: velocity, torque, and position. </p>
             <p> To enter velocity control: </p>
             <pre><code>odrv0.axis0.controller.config.control_mode = CONTROL_MODE_VELOCITY_CONTROL</code></pre>
             <p> To set the desired speed: </p>
